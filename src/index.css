@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-marca: #5CB5D6; /* troquem pelas cores de vocês */
-  --color-fundo: #7EC4EE; 
-  --color-destaque: #1F4A87;
-  --color-botao: #4477AC;
-  --color-texto-destaque: #151B4D;
+  --color-marca:#6D8FA2; /* troquem pelas cores de vocês */
+  --color-fundo: #F9F9F9; 
+  --color-destaque: #AAC7D8; 
+  --color-botao: #2C6B8D;
+  --color-texto-destaque: #9DA7AD;
   --color-destaque-claro: #00A5E3;
 }
