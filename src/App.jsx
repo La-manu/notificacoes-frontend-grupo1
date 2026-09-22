@@ -3,6 +3,7 @@ import FilterBar from "./components/FilterBar";
 import NovaNotificacaoForm from "./components/NovaNotificacao";
 import NotificationList from "./components/NotificationList";
 import Saudacao from "./components/Saudacao";
+import Button from "./components/button"; 
 
 const notificacoesExemplo = [
   {
@@ -24,46 +25,41 @@ const notificacoesExemplo = [
 ];
 
 function App() {
-  <div>
-    <Saudacao />
-  </div>;
-
   const [filtro, setFiltro] = useState("todas");
   const [notificacoes, setNotificacoes] = useState(notificacoesExemplo);
-  // Agora as notificações ficam em um estado
 
+  // Lógica de filtro unificada (ajustada para ignorar maiúsculas/minúsculas)
   const notificacoesVisiveis = notificacoes.filter((n) => {
     if (filtro === "todas") return true;
-    if (filtro === "push") return n.canal === "PUSH";
-    if (filtro === "email") return n.canal === "EMAIL";
+    return n.canal.toLowerCase() === filtro.toLowerCase();
   });
 
   function adicionarNotificacao(nova) {
     setNotificacoes((atual) => [nova, ...atual]);
   }
 
-  const notificacoesFiltradas = notificacoes.filter((n) => {
-    if (filtro === "todas") return true;
-
-    return n.canal.toLowerCase() === filtro;
-  });
-
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Central de Notificações</h1>
+      {/* Adicionado o componente de Saudação aqui no topo */}
+      <Saudacao />
 
-      {/* FORMULÁRIO DE ADICIONAR */}
+      <h1 className="text-2xl font-bold my-4">Central de Notificações</h1>
+
+      {/* ÚNICO FORMULÁRIO DE ADICIONAR */}
       <NovaNotificacaoForm onAdicionar={adicionarNotificacao} />
 
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 my-4">
         <FilterBar filtroAtual={filtro} onFiltroChange={setFiltro} />
       </div>
 
+      {/* LISTA DE NOTIFICAÇÕES */}
       <NotificationList notificacoes={notificacoesVisiveis} />
 
-      <NovaNotificacaoForm onAdicionar={adicionarNotificacao} />
+      {/* FORMULÁRIO DUPLICADO FOI REMOVIDO DAQUI */}
 
-      <Button variant="destaque">Enviar notificação de teste</Button>
+      <div className="mt-4">
+        <Button variant="destaque">Enviar notificação de teste</Button>
+      </div>
     </div>
   );
 }

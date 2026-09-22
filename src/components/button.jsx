@@ -1,7 +1,8 @@
 function Button({ children, variant = "primario", onClick }) {
   const estilos = {
-    primario: "bg-[var(--color-marca-2)] text-white hover:bg-[var(--color-marca-3)] transition-colors",
-    destaque: "bg-[var(--color-marca-3)] text-white hover:bg-[var(--color-marca-2)] transition-colors",
+    // Bem mais simples e fácil de ler:
+    primario: "bg-marca-2 text-white hover:bg-marca-3 transition-colors",
+    destaque: "bg-marca-3 text-white hover:bg-marca-2 transition-colors",
   };
 
   return (

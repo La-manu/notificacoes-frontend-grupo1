@@ -1,3 +1,6 @@
+import NotificationCard from "./NotificationCard"; // Ajuste o nome do arquivo se for diferente
+
+
 function NotificationList({ notificacoes }) {
   if (notificacoes.length === 0) {
     return (
