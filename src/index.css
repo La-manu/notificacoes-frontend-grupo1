@@ -1,0 +1,10 @@
+
+@import "tailwindcss";
+@theme {
+  --color-marca-1: #151B4D; /* Primeiro bloco (Azul Escuro/Marinho) */
+  --color-marca-2: #1F4A87; /* Segundo bloco (Azul Royal Médio) */
+  --color-marca-3: #4477AC; /* Terceiro bloco (Azul Aço/Muted) */
+  --color-marca-4: #00A5E3; /* Quarto bloco (Azul Ciano Vivo) */
+  --color-marca-5: #7EC4EE; /* Quinto bloco (Azul Céu Claro) */
+  --color-marca-6: #5CB5D6; /* Sexto bloco (Azul Turquesa Claro) */
+}
