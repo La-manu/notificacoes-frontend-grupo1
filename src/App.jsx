@@ -1,37 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // 1. Adicionado useEffect aqui
+import { API_URL } from "./config"; // 2. Importado a URL da API do config.js
 import FilterBar from "./components/FilterBar";
 import NovaNotificacaoForm from "./components/NovaNotificacao";
 import NotificationList from "./components/NotificationList";
 import Saudacao from "./components/Saudacao";
-import Button from "./components/button"; 
-
-const notificacoesExemplo = [
-  {
-    id: 1,
-    canal: "PUSH",
-    hora: "14:32",
-    titulo: "Inscrição confirmada",
-    texto: "Seu lugar está garantido.",
-    lida: false,
-  },
-  {
-    id: 2,
-    canal: "EMAIL",
-    hora: "13:10",
-    titulo: "Evento amanhã",
-    texto: "Não esqueça o notebook.",
-    lida: true,
-  },
-];
+import Button from "./components/button";
 
 function App() {
+  const [notificacoes, setNotificacoes] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
   const [filtro, setFiltro] = useState("todas");
-  const [notificacoes, setNotificacoes] = useState(notificacoesExemplo);
 
-  // Lógica de filtro unificada (ajustada para ignorar maiúsculas/minúsculas)
+  useEffect(() => {
+    async function buscar() {
+      try {
+        const resposta = await fetch(`${API_URL}/notificacoes`);
+        if (!resposta.ok) throw new Error("Erro ao buscar notificações");
+        const dados = await resposta.json();
+        setNotificacoes(dados);
+      } catch (e) {
+        setErro(e.message);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    buscar();
+  }, []);
+
   const notificacoesVisiveis = notificacoes.filter((n) => {
     if (filtro === "todas") return true;
-    return n.canal.toLowerCase() === filtro.toLowerCase();
+    return n.canal?.toLowerCase() === filtro.toLowerCase();
   });
 
   function adicionarNotificacao(nova) {
@@ -52,10 +52,12 @@ function App() {
         <FilterBar filtroAtual={filtro} onFiltroChange={setFiltro} />
       </div>
 
-      {/* LISTA DE NOTIFICAÇÕES */}
-      <NotificationList notificacoes={notificacoesVisiveis} />
+      {/* 5. Avisos de Carregando e Erro adicionados na tela */}
+      {carregando && <p className="text-gray-500 my-4">Carregando notificações...</p>}
+      {erro && <p className="text-red-500 my-4">Erro: {erro}</p>}
 
-      {/* FORMULÁRIO DUPLICADO FOI REMOVIDO DAQUI */}
+      {/* LISTA DE NOTIFICAÇÕES REAIS */}
+      {!carregando && !erro && <NotificationList notificacoes={notificacoesVisiveis} />}
 
       <div className="mt-4">
         <Button variant="destaque">Enviar notificação de teste</Button>
