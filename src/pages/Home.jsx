@@ -103,7 +103,7 @@ function Home() {
 
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <div className="flex justify-between items-center mb-4">
+      <header className="flex justify-between items-center mb-4">
         <Saudacao />
         <button 
           onClick={handleSair} 
@@ -111,8 +111,9 @@ function Home() {
         >
           Sair
         </button>
-      </div>
+      </header>
 
+    <main>
       <h1 className="text-2xl font-bold my-4">Central de Notificações</h1>
       
       <NovaNotificacaoForm onAdicionar={adicionarNotificacao} />
@@ -126,6 +127,7 @@ function Home() {
       <div className="mt-4">
         <Button variant="destaque">Enviar notificação de teste</Button>
       </div>
+    </main>
     </div>
   );
 }

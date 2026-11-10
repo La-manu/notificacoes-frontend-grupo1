@@ -21,9 +21,9 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Acessar o Sistema</h2>
+        <h1 className="text-2xl font-bold mb-6 text-center">Acessar o Sistema</h1>
         
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <div>
@@ -43,7 +43,7 @@ function Login() {
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

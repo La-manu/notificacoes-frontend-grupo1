@@ -46,6 +46,7 @@ function NovaNotificacaoForm({ onAdicionar }) {
       <select
         value={canal}
         onChange={(e) => setCanal(e.target.value)}
+        aria-label="Tipo de notificação"
         className="border border-gray-200 rounded-lg px-3 py-2"
       >
         <option value="PUSH">Push</option>

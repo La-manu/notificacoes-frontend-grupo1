@@ -2,17 +2,17 @@
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--color-marca-4); /* Modificado: Azul Ciano Vivo */
-  background: color-mix(in srgb, var(--color-marca-5) 20%, transparent); /* Modificado: Fundo Azul Céu Claro suave */
+  color: var(--color-marca-2);
+  background: color-mix(in srgb, var(--color-marca-5) 20%, transparent);
   border: 2px solid transparent;
   transition: border-color 0.3s;
   margin-bottom: 24px;
 
   &:hover {
-    border-color: var(--color-marca-1); /* Modificado: Borda Azul Escuro no Hover */
+    border-color: var(--color-marca-1);
   }
   &:focus-visible {
-    outline: 2px solid var(--color-marca-4); /* Modificado: Outline Azul Ciano Vivo */
+    outline: 2px solid var(--color-marca-4);
     outline-offset: 2px;
   }
 }
